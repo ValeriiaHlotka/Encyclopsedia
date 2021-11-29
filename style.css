@@ -1,0 +1,591 @@
+.menu ul {
+    padding: 0;
+}
+.menu li {
+    display:inline-block;
+}
+body {
+    margin: 0;
+    font: menu;
+    font-size: 15px;
+    background-color: #001c28;
+    color: aliceblue;
+}
+button {
+    background-color: unset;
+    border: unset;
+}
+.menu {
+    height: 100px;
+    background-color: #22464b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 150px 0 150px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+a {
+    text-decoration: unset;
+    color: aliceblue;
+    transition: .3s ease-in-out;
+}
+a:hover {
+    color: #cc01ff;
+}
+.menu .socials li:not(:last-child) {
+    margin-right: 25px;
+}
+.menu .tabs li {
+    margin-left: 25px;
+}
+.menu .tabs li:hover a {
+    color: #cc01ff;
+}
+.menu .tabs_group, .menu .socials {
+    display: flex;
+    align-items: center;
+}
+.menu .search i:hover, .post .heading:hover a{
+    color: #cc01ff;
+}
+.menu .search i {
+    font-size: 20px;
+    color: #ffffffc2;
+    margin-top: -5px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+input#search {
+    background-color: #f0f8ffed;
+    border: unset;
+    height: 27px;
+    width: 0.1px;
+    position: absolute;
+    padding-left: 10px;
+    top: 36px;
+    right: 181px;
+    transition: .3s ease-in-out;
+    border-radius: 13px;
+    visibility: hidden;
+}
+input#search.opened {
+    width: 250px;
+    visibility: visible;
+}
+.menu .search button {
+    padding: 0px 0 5px 0px;
+}
+.menu .search {
+    border-left-style: dotted;
+    border-left-width: thin;
+    padding-left: 20px;
+    border-left-color: aliceblue;
+}
+.notifications button.bell i{
+    font-size: 30px;
+    color: aliceblue;
+    transition: .3s ease-in-out;
+}
+.notifications button.bell i:hover{
+    color: #cc01ff;
+}
+.notifications button.bell {
+    position: fixed;
+    bottom: 70px;
+    right: 150px;
+    cursor: pointer;
+    z-index: 50;
+}
+.popup, .authreg {
+    visibility: hidden;
+}
+.notifications .info, .popup .info, .authreg .info {
+    width: 500px;
+    height: 400px;
+    position: fixed;
+    background-color: #496a72fa;
+    right: 150px;
+    bottom: 130px;
+    border-radius: 10%;
+    visibility: hidden;
+}
+.popup .info, .authreg .info {
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    padding: 70px 40px;
+    width: 420px;
+    height: 260px;
+    visibility: unset;
+    background-color: #22464be6;
+    z-index: 10;
+}
+.authreg .info {
+    border: 2px solid #cc01ff;
+    width: 280px;
+    height: 270px;
+    margin-top: -182px;
+    margin-left: -207px;
+}
+.notifications .info {
+    padding: 70px 40px;
+    width: 420px;
+    height: 260px;
+    z-index: 50;
+    overflow: auto;
+}
+.popup_wrapper {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: fixed;
+    background-color: #051216a8;
+    z-index: 9;
+}
+.notifications .info.opened, .popup.opened, .authreg.opened {
+    visibility: visible;
+}
+.notifications .info button.close i, .popup .info button.close i, .authreg .info button.close i {
+    color: aliceblue;
+    top: 20px;
+    right: 27px;
+    cursor: pointer;
+    font-size: 30px;
+    position: absolute;
+}
+.notifications .info.opened button.close i, .popup.opened button.close i, .authreg.opened .info button.close i {
+    transition: .3s ease-in-out;
+}
+.notifications .info button.close i:hover, .popup .info button.close i:hover, .authreg .info button.close i:hover {
+    color: #cc01ff;
+}
+.wrapper {
+    margin: 150px 150px 0 150px;
+    width: auto;
+    height: 1000px;
+}
+h2 {
+    color: aliceblue;
+    font-weight: normal;
+    margin-top: 0;
+}
+.post, .content_area, .unlocked .item {
+    margin-top: 50px;
+    background-color: #f0f8ff08;
+    padding: 50px;
+}
+.heading {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.post .details {
+    font-size: 10px;
+    margin-top: 15px;
+}
+.post .text {
+    display: flex;
+}
+.post .text .info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+}
+.post .text img {
+    margin-right: 20px;
+}
+.search_result .post b {
+    color: #cc01ff;
+    font-weight: normal;
+}
+.search_result .post .tag b {
+    font-weight: bold;
+}
+.sublis {
+    visibility: hidden;
+    position: absolute;
+    transition: .3s ease-in-out;
+    color: aliceblue;
+    border: 2px solid #001c28;
+    margin-top: 10px;
+    background-color: #22464b;
+}
+.sublis.opened {
+    visibility: visible;
+}
+.sublis ul {
+    display: flex;
+    flex-direction: column;
+}
+.menu .tabs .sublis li:hover a {
+    color: #cc01ff;
+}
+.menu .tabs .sublis li a {
+    color: aliceblue;
+}
+.menu .tabs .sublis.opened li a{
+    transition: .3s ease-in-out;
+}
+.menu .tabs .sublis li a{
+    transition: unset;
+}
+.menu .sublis ul li {
+    margin: 2px 5px;
+    min-width: 50px;
+    cursor: pointer;
+}
+.menu .sublis.opened ul li {
+    transition: .3s ease-in-out;
+}
+.menu .sublis ul li:hover {
+    color: #cc01ff;
+}
+.post .tags {
+    display: flex;
+}
+.post .tag {
+    margin-right: 4px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.post .tag:hover {
+    color: #cc01ff;
+}
+.post .text p {
+    text-indent: 1.5em;
+    margin: 0;
+}
+form#feedback, form#authreg {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-top: 30px;
+}
+form#authreg {
+    width: 100%;
+}
+form#feedback input, form#feedback textarea, form#authreg input, form#profile input {
+    height: 35px;
+    background-color: unset;
+    border: 1px solid aliceblue;
+    margin: 5px 0;
+    color: aliceblue;
+}
+form#feedback textarea {
+    height: 80px;
+    font: menu;
+    font-size: 14px;
+}
+form#feedback button, button#confirm_payment, form#authreg button {
+    color: aliceblue;
+    margin-top: 15px;
+    transition: .3s ease-in-out;
+}
+form#feedback button:hover, button#confirm_payment:hover, form#authreg button:hover {
+    color: #cc01ff;
+    cursor: pointer;
+}
+.contacts .content_area {
+    display: flex;
+}
+.contacts .content_area .feedback {
+    width: 60%;
+}
+.contacts .content_area .other {
+    display: flex;
+    flex-direction: column;
+}
+.contacts .linkbox {
+    flex-direction: column;
+    display: flex;
+    margin-top: 30px;
+}
+.contacts .linkbox a{
+    margin-bottom: 10px;
+}
+.subscription .plans {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+.subscription .plans::-webkit-scrollbar {
+    display: none;
+}
+.subscription .plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 250px;
+    height: 300px;
+    border: 1px solid aliceblue;
+    padding: 20px;
+    margin-top: 40px;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+.subscription .plan:not(:last-child) {
+    margin-right: 20px;
+}
+.subscription .plan:hover {
+    border: 1px solid #cc01ff;
+}
+.subscription .plan .price {
+    font-size: 18px;
+}
+.subject .subject_item a:hover {
+    color: #cc01ff;
+}
+.switch_authreg {
+    margin-top: 20px;
+    align-self: center;
+}
+.forgot_authreg {
+    font-size: 13px;
+}
+.authreg form#authreg button, .authreg a {
+    transition: unset;
+}
+.authreg.opened form#authreg button, .authreg.opened a {
+    transition: .3s ease-in-out;
+}
+.error {
+    font-size: 13px;
+    color: #cc01ff;
+    font-weight: 500;
+    visibility: hidden;
+}
+.error.opened {
+    visibility: visible;
+}
+button.change, #update_profile, #log_out {
+    color: aliceblue;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+button.change {
+    font-size: 12px;
+}
+button.change:hover, #update_profile:hover, #log_out:hover {
+    color: #cc01ff;
+}
+.profile .content_area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.profile .content_area .item {
+    margin-top: 10px;
+}
+form#profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.confirm_text {
+    margin-bottom: 30px;
+}
+#update_profile {
+    margin-top: 30px;
+}
+#log_out {
+    margin-top: 60px;
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+}
+.unlocked .container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.container .text {
+    display: block;
+}
+.container .post img + .info {
+    -webkit-line-clamp: 3;
+}
+.post_item .post .info {
+    -webkit-line-clamp: unset;
+    display: block;
+}
+.post_item .post .text {
+    display: block;
+}
+.post_item .post .text img {
+    float: left;
+    width: 200px;
+    margin-bottom: 15px;
+}
+.post {
+    position: relative;
+}
+.post button.like {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+button.like {
+    cursor: pointer;
+    color: aliceblue;
+    transition: .3s ease-in-out;
+}
+button.like.chosen {
+    color: #cc01ff;
+}
+button.like:hover {
+    color: #cc01ff;
+}
+button.like.chosen:hover {
+    color: aliceblue;
+}
+.siblings {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    visibility: visible;
+}
+.siblings .hidden {
+    visibility: hidden;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table th {
+    padding: 5px 5px 15px 5px;
+    border: none;
+    text-align: start;
+    font-size: 18px;
+    font-weight: normal;
+}
+.table td {
+    padding: 5px;
+    border: none;
+}
+.table tr {
+    border: 1px solid aliceblue;
+}
+.table thead tr {
+    border: unset;
+}
+.rating .tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 1px solid aliceblue;
+    padding-bottom: 10px;
+}
+.rating .tab {
+    margin-right: 20px;
+    padding: 5px;
+    border: 1px solid aliceblue;
+    cursor: pointer;
+}
+.rating .tab:hover, .rating .tab.chosen {
+    border: 1px solid #cc01ff;
+    transition: .3s ease-in-out;
+}
+.do_you_know .item.opened {
+    margin-bottom: 60px;
+}
+.do_you_know .item {
+    margin-bottom: unset;
+}
+.do_you_know .answer {
+    visibility: hidden;
+
+}
+.do_you_know .item.opened .answer {
+    visibility: visible;
+
+}
+.do_you_know .question {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.do_you_know .question:hover {
+    color: #cc01ff;
+}
+.test {
+    border: 1px solid #08232f;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.post_item .test {
+    border: 1px solid aliceblue;
+}
+.post_item .answers .answer {
+
+}
+.question {
+    margin-bottom: 10px;
+}
+.answer {
+    cursor: pointer;
+}
+.info.opened .answer, .post_item .answers .answer {
+    transition: .3s ease-in-out;
+}
+.answer:hover {
+    color: #cc01ff;
+}
+.answers.opened .answer:hover {
+    color: unset;
+}
+.answers .answer b, .answers .answer b + i {
+    color: #08232f;
+}
+.post_item .answers .answer b, .answers .answer b + i {
+    color: #cc01ff;
+}
+.post button.confirm {
+    margin-top: 30px;
+    color: aliceblue;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid aliceblue;
+    transition: .3s ease-in-out;
+}
+.post button.confirm:hover, button.confirm.chosen {
+    border: 1px solid #cc01ff;
+}
+.post_item .content_area {
+    visibility: hidden;
+}
+.post_item .content_area.opened {
+    visibility: visible;
+}
+.timer.opened {
+    border: 1px solid aliceblue;
+    padding: 7px;
+    width: 115px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.test .timer.opened {
+    margin-top: 30px;
+    margin-bottom: unset;
+}
+.timer_label {
+    display: none;
+}
+.timer_label.opened {
+    display: block;
+}
+.test.expired {
+    background-color: #22464b;
+    color: #f0f8ffbd;
+}
+.test.expired .answer {
+    cursor: unset;
+}
+.test.expired .answer:hover {
+    color: unset;
+}
