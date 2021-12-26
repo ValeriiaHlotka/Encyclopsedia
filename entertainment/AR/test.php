@@ -24,7 +24,9 @@
 </a-scene>
 </body>-->
 
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+
+
+<!--<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
 <style>
@@ -49,7 +51,6 @@
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
-<!-- minimal loader shown until image descriptors are loaded -->
 <div class="arjs-loader">
     <div>Loading, please wait...</div>
 </div>
@@ -59,7 +60,7 @@
         embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
 >
-    <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+
     <a-nft
             type="nft"
             url="/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"
@@ -77,4 +78,13 @@
     </a-nft>
     <a-entity camera></a-entity>
 </a-scene>
-</body>
+</body>-->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+              ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz"
+              alt="A 3D model of an astronaut"
+              ar ar-scale="fixed"
+              ar-modes="webxr"
+              auto-rotate
+              camera-controls
+              xr-environment></model-viewer>
