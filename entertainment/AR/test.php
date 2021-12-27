@@ -21,7 +21,7 @@
         <a-entity
                 position="0 -1 0"
                 scale="0.05 0.05 0.05"
-                gltf-model="entertainment/AR/models/fox.glb"
+                gltf-model="entertainment/AR/models/fox.fbx"
                 rotation="0 90 45"
         ></a-entity>
     </a-marker>
