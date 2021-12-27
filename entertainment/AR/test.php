@@ -102,7 +102,7 @@
         <a-entity
                 position="0 -1 0"
                 scale="0.05 0.05 0.05"
-                gltf-model="entertainment/AR/fox.fbx"
+                gltf-model="entertainment/AR/banana.glb"
         ></a-entity>
     </a-marker-camera>
     <!--<a-entity camera></a-entity>-->
