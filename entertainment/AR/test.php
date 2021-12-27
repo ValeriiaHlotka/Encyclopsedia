@@ -100,7 +100,7 @@
     <a-marker type="pattern" url="entertainment/AR/ball.patt">
         <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
         <a-entity
-                position="0 2 -5"
+                position="0 0 0"
                 scale="1 1 1"
                 gltf-model="entertainment/AR/banana.glb"
                 rotation="0 45 45"
