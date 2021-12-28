@@ -3,9 +3,12 @@
 
 class Database
 {
-    private string $servername = "localhost";
+    /*private string $servername = "localhost";
     private string $username = "root";
-    private string $password = "123Adm1";
+    private string $password = "123Adm1";*/
+    private string $servername = "encyclopsedia.mysql.database.azure.com";
+    private string $username = "encycl0ps3d1a";
+    private string $password = "passw0rdL3ra";
     private string $database = "encyclopsedia";
     protected $connection;
 
