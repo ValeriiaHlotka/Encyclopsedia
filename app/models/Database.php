@@ -6,7 +6,7 @@ class Database
     /*private string $servername = "localhost";
     private string $username = "root";
     private string $password = "123Adm1";*/
-    private string $servername = "encyclopsedia.mysql.database.azure.com";
+    private string $servername = "encyclopsedia.mysql.database.azure.com:3306";
     private string $username = "encycl0ps3d1a";
     private string $password = "passw0rdL3ra";
     private string $database = "encyclopsedia";
@@ -14,6 +14,7 @@ class Database
 
     public function __construct()
     {
+
         $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->database);
 
         if ($this->connection->connect_error) {
