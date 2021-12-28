@@ -177,5 +177,13 @@
             });
         });
 
+        document.querySelector(".post button.ar_button")?.addEventListener('click', (e) => {
+            window.location.href = "/entertainments";
+        });
+
+        document.querySelector('.post_item .ar_label')?.addEventListener('click', ((e) => {
+            e.target.nextElementSibling.classList.toggle('opened');
+        }));
+
     });
 })();

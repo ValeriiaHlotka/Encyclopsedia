@@ -33,6 +33,30 @@ class Model_Post extends Model
                 }
             }
 
+            $ar = $connection->Query('SELECT * from entertainment where `Subject`='.$article[0][0][3]);
+            if ($ar) {
+                foreach ($ar[0] as $item) {
+                    $article[0]['ar'][$item[0]]['type'] = $item[1];
+                    $article[0]['ar'][$item[0]]['marker'] = $item[2];
+                    $article[0]['ar'][$item[0]]['model'] = $item[3];
+                    $article[0]['ar'][$item[0]]['name'] = $item[4];
+
+                    $path = "media/coverings/";
+                    $cover = substr($item[3], strrpos($item[3], "/") + 1);
+                    $cover = substr($cover, 0, strrpos($cover, "."));
+                    $files = glob($path . $cover . ".*", GLOB_ERR);
+                    $cover_link = ($files ? $files[0] : "#");
+                    $article[0]['ar'][$item[0]]['cover_link'] = $cover_link;
+
+                    $path = "media/markers/";
+                    $marker = substr($item[2], strrpos($item[2], "/") + 1);
+                    $marker = substr($marker, 0, strrpos($marker, "."));
+                    $files = glob($path . $marker . ".png", GLOB_ERR);
+                    $marker_link = ($files ? $files[0] : "#");
+                    $article[0]['ar'][$item[0]]['marker_link'] = $marker_link;
+                }
+            }
+
             return $article[0];
         }
         else return false;

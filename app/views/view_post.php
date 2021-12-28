@@ -27,8 +27,34 @@
             }
             echo substr($str, 0, strlen($str) - 8) . '</div>';
 
-            echo '</div><button class="confirm">Got it!</button><div class="error"></div>
-';
+            echo '</div><button class="confirm">Got it!</button><div class="error"></div>';
+
+            if (key_exists("ar",$data)) {
+                $type = "";
+                $marker = "";
+                $model = "";
+                echo '<div class="ar_label">AR experience available!</div>';
+                $tipped = false;
+                foreach ($data["ar"] as $ar) {
+                    if (!$tipped) {
+                        echo '<div class="ar_area"><div class="ar_area_text"><img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br><img src="/qr.png" alt="qr"></div>';
+                        $tipped = true;
+                    }
+                    $type = $ar["type"];
+                    $marker = $ar["marker"];
+                    $model = $ar["model"];
+                    echo '<button class="ar_button">'.$ar["name"].'</button>';
+                }
+                echo '</div>';
+
+                if ($type == "marker" || $type == "image") {
+                    $str = file_get_contents("entertainment/AR/templates/" . $type . ".php");
+                    $str = str_replace("#MARKER", $marker, $str);
+                    $str = str_replace("#MODEL", $model, $str);
+                    file_put_contents("app/views/view_entertainments.php", $str);
+                }
+            }
+
             echo'</div>
                 </div>
                 <div class="siblings">

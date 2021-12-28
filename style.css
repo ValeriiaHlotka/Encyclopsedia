@@ -543,7 +543,7 @@ button.like.chosen:hover {
 .post_item .answers .answer b, .answers .answer b + i {
     color: #cc01ff;
 }
-.post button.confirm {
+.post button.confirm, .post button.ar_button {
     margin-top: 30px;
     color: aliceblue;
     cursor: pointer;
@@ -552,7 +552,7 @@ button.like.chosen:hover {
     border: 1px solid aliceblue;
     transition: .3s ease-in-out;
 }
-.post button.confirm:hover, button.confirm.chosen {
+.post button.confirm:hover, button.confirm.chosen, .post button.ar_button:hover {
     border: 1px solid #cc01ff;
 }
 .post_item .content_area {
@@ -588,4 +588,25 @@ button.like.chosen:hover {
 }
 .test.expired .answer:hover {
     color: unset;
+}
+.ar_label {
+    margin-top: 30px;
+}
+.post button.ar_button {
+    margin-top: 10px;
+}
+.ar_label {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    font-size: 15px;
+}
+.ar_area {
+    display: none;
+    margin-top: 30px;
+}
+.ar_label:hover {
+    color: #cc01ff;
+}
+.ar_area.opened {
+    display: block;
 }
