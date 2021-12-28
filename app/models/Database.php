@@ -20,8 +20,8 @@ class Database
         if (mysqli_connect_errno($conn)) {
             die('Failed to connect to MySQL: '.mysqli_connect_error());
         }*/
-        $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->database, 3306, MYSQLI_CLIENT_SSL);
-        $this->connection->ssl_set(NULL,NULL, "/var/www/html/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+        $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->database, 3306);
+        //$this->connection->ssl_set(NULL,NULL, "/var/www/html/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
 
         if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);
