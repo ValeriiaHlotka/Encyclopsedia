@@ -41,9 +41,9 @@
                     $model = $ar["model"];
                     if (!$tipped) {
                         echo '<div class="ar_area"><div class="ar_area_text"><img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br><img src="/qr.png" alt="qr"></div>';
-                        $str = file_get_contents("entertainment/AR/templates/model-viewer.php");
+                        /*$str = file_get_contents("entertainment/AR/templates/model-viewer.php");
                         $str = str_replace("#MODEL", $model, $str);
-                        echo $str;
+                        echo $str;*/
                         $tipped = true;
                     }
 
