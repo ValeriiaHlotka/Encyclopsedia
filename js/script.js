@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function() {
-    function PrepareRequest(path = "/app/models/ajax.php") {
+    function PrepareRequest(path = "app/models/ajax.php") {
         const request = new XMLHttpRequest();
         const url = path;
         request.responseType = "json";

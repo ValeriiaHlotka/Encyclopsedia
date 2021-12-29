@@ -50,7 +50,6 @@ class Router
         if(file_exists($controller_path))
         {
             include "app/controllers/".$controller_file;
-            echo "included";
         }
         else
         {
