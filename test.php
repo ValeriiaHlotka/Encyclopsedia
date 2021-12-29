@@ -161,7 +161,7 @@
             </button>
             <div class="text">
                 <div class="info">
-                    <img src=../../media/icons/favicon.ico alt="" height="200px">
+                    <img src=../../media/images/water.jpg alt="" height="200px">
                     Pure water is tasteless, odorless, and colorless. Water can occur in three states: solid (ice), liquid, or gas (vapor).
                     Solid water�ice is frozen water. When water freezes, its molecules move farther apart, making ice less dense than water. This means that ice will be lighter than the same volume of water, and so ice will float in water. Water freezes at 0� Celsius, 32� Fahrenheit.
                     <br>
