@@ -31,7 +31,7 @@ class Database
 
 
         $con = mysqli_init();
-        mysqli_ssl_set($con,NULL,NULL, "/var/www/html/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+        mysqli_ssl_set($con,NULL,NULL, "/var/www/html/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
         mysqli_real_connect($con, "encyclopsedia.mysql.database.azure.com", "encycl0ps3d1a", "passw0rdL3ra", "encyclopsedia", 3306);
         if (mysqli_connect_errno()) {
             die('Failed to connect to MySQL: '.mysqli_connect_errno().", - ".mysqli_connect_error());
