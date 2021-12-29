@@ -174,10 +174,17 @@
                 <div class="date">
                     2021-11-11 20:11:18
                 </div>
-                <div class="tags"><div class="tag">nature, </div><div class="tag">water</div></div><button class="confirm">Got it!</button><div class="error"></div><div class="ar_label">AR experience available!</div><div class="ar_area"><div class="ar_area_text"><img width="150px" src="/media/coverings/banana.jpg" alt="Sport Banana"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/media/markers/ball.png" >this image</a></b> in the camera<br><br><br><img src="/testqr.png" alt="qr"></div><button class="ar_button_"><a href="test1.php">Sport Banana</a></button></div></div>
+                <div class="tags"><div class="tag">nature, </div><div class="tag">water</div></div><button class="confirm">Got it!</button><div class="error"></div><div class="ar_label">AR experience available!</div><div class="ar_area"><div class="ar_area_text"><img width="150px" src="/media/coverings/banana.jpg" alt="Sport Banana"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/media/markers/ball.png" >this image</a></b> in the camera<br><br><br><img src="/testqr.png" alt="qr"></div><script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+                    <model-viewer scr="entertainment/AR/models/banana.glb"
+                                  alt="A 3D model"
+                                  ar ar-scale="fixed"
+                                  ar-modes="webxr"
+                                  auto-rotate
+                                  camera-controls
+                                  xr-environment></model-viewer><button class="ar_button">Sport Banana</button></div></div>
         </div>
         <div class="siblings">
-            <a id="prev_post" class="hidden"href="/post/item/f"><i class="fa fa-arrow-left"></i> a</a><a id="next_post" href="/post/item/3"><i class="fa fa-arrow-right"></i> Day and night on Earth</a></div></div></div>
+            <a id="prev_post" class="hidden" href="/post/item/f"><i class="fa fa-arrow-left"></i> a</a><a id="next_post" href="/post/item/3"><i class="fa fa-arrow-right"></i> Day and night on Earth</a></div></div></div>
 <footer>
 </footer>
 </body>

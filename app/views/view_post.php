@@ -36,13 +36,17 @@
                 echo '<div class="ar_label">AR experience available!</div>';
                 $tipped = false;
                 foreach ($data["ar"] as $ar) {
-                    if (!$tipped) {
-                        echo '<div class="ar_area"><div class="ar_area_text"><img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br><img src="/qr.png" alt="qr"></div>';
-                        $tipped = true;
-                    }
                     $type = $ar["type"];
                     $marker = $ar["marker"];
                     $model = $ar["model"];
+                    if (!$tipped) {
+                        echo '<div class="ar_area"><div class="ar_area_text"><img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br><img src="/qr.png" alt="qr"></div>';
+                        $str = file_get_contents("entertainment/AR/templates/model-viewer.php");
+                        $str = str_replace("#MODEL", $model, $str);
+                        echo $str;
+                        $tipped = true;
+                    }
+
                     echo '<button class="ar_button">'.$ar["name"].'</button>';
                 }
                 echo '</div>';
@@ -60,11 +64,11 @@
                 <div class="siblings">
                 <a id="prev_post" ';
             if ($data['siblings'][0] === 'false') {
-                echo 'class="hidden"';
+                echo 'class="hidden "';
             }
             echo 'href="/post/item/' . $data['siblings'][0][0] . '"><i class="fa fa-arrow-left"></i> ' . $data['siblings'][0][1] . '</a><a id="next_post" ';
             if ($data['siblings'][1] === 'false') {
-                echo 'class="hidden"';
+                echo 'class="hidden "';
             }
             echo 'href="/post/item/' . $data['siblings'][1][0] . '"><i class="fa fa-arrow-right"></i> ' . $data['siblings'][1][1] . '</a></div>';
 
