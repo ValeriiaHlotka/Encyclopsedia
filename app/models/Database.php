@@ -36,7 +36,6 @@ class Database
         if (mysqli_connect_errno()) {
             die('Failed to connect to MySQL: '.mysqli_connect_errno().", - ".mysqli_connect_error());
         }
-        $con->info
         $this->connection = $con;
     }
 
