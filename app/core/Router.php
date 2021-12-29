@@ -38,18 +38,18 @@ class Router
         // подцепляем файл с классом модели (файла модели может и не быть)
 
         $model_file = strtolower($model_name).'.php';
-        $model_path = "app/models/".$model_file;
+        $model_path = "/app/models/".$model_file;
         if(file_exists($model_path))
         {
-            include "app/models/".$model_file;
+            include "/app/models/".$model_file;
         }
 
         // подцепляем файл с классом контроллера
         $controller_file = strtolower($controller_name).'.php';
-        $controller_path = "app/controllers/".$controller_file;
+        $controller_path = "/app/controllers/".$controller_file;
         if(file_exists($controller_path))
         {
-            include "app/controllers/".$controller_file;
+            include "/app/controllers/".$controller_file;
         }
         else
         {
