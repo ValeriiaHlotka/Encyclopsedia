@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded",function() {
             let request = PrepareRequest();
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
-                    if ('next' in request.response)
+                    if (request.response != null && 'next' in request.response)
                         ShowCounter(timer, request.response.next);
                 }
             });

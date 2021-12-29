@@ -150,8 +150,8 @@
             if (e.target.closest('li[data-need-auth]')) {
                 if (document.cookie.indexOf('authorized=true') === -1) {
                     e.preventDefault();
-                    authreg_popup.classList.add('opened');
-                    authreg_popup.dataset.link = e.target.href;
+                    authreg_popup?.classList.add('opened');
+                    authreg_popup?.dataset.link = e.target.href;
                 }
             }
         });
