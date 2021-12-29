@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded",function() {
     }
 //end timer
 
-    document.querySelectorAll('.timer').forEach(timer=>{
+    /*document.querySelectorAll('.timer').forEach(timer=>{
         if ('date' in timer.parentElement.dataset && !timer.classList.contains('opened')) {
             ShowCounter(timer, timer.parentElement.dataset.date, 3);
         }
@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded",function() {
             });
             request.send(params);
         }
-    });
+    });*/
 
 
 
