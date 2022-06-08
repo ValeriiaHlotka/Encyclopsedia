@@ -39,7 +39,8 @@ class Database
         $this->connection = $con;
     }
 
-    function getConection() {
+    function getConection(): bool|mysqli
+    {
         return $this->connection;
     }
 
@@ -49,7 +50,6 @@ class Database
         $result = $this->connection->query('SELECT column_name
             FROM information_schema.columns
             WHERE table_name=' . "'" . $table . "'");
-
         if (!is_bool($result)) {
             while ($row = $result->fetch_row()) {
                 foreach ($row as $r) {
@@ -57,7 +57,6 @@ class Database
                         $columns[] = $r;
                 }
             }
-
             if (!empty($columns)) {
                 return ($columns);
             }
@@ -65,17 +64,20 @@ class Database
         return false;
     }
 
-    function PrepareColumns($columns) {
+    function PrepareColumns($columns): string
+    {
         $result = '';
         if (is_array($columns)) {
             foreach ($columns as $column) {
                 $result .= '`' . $column . '`,';
             }
             return substr($result, 0, strlen($result) - 1);
-        } else return '`' . $columns . '`';
+        }
+        return '`' . $columns . '`';
     }
 
-    function PrepareValues($values) {
+    function PrepareValues($values): string
+    {
         $result = '';
         foreach ($values as $value) {
             if ($value === 'now()')
@@ -86,41 +88,40 @@ class Database
         return substr($result, 0, strlen($result) - 1);
     }
 
-    function Insert($table, $values, $columns = null)
+    function Insert($table, $values, $columns = null): mysqli_result|bool
     {
         if ($columns === null)
             $columns = $this->getTableColumns($table);
-        if (count($columns) === count($values))
+        if (count($columns) === count($values)) {
             $query = 'INSERT INTO ' . $table . ' (' . $this->PrepareColumns($columns) . ') VALUES (' . $this->PrepareValues($values) . ')';
-        if (strlen($query)) {
-            $result = $this->connection->query($query);
+            if (strlen($query)) {
+                $result = $this->connection->query($query);
+                return $result;
+            }
+            return false;
         }
-        return $result;
+        return false;
     }
 
     function Select($table, $columns = '*', $limit = null, $where = null, $sortColumn = null, $sortOrder = null, $groupBy = null) {
         $res = [];
-
         $query = 'SELECT ' . ($columns === '*' ? $columns : $this->PrepareColumns($columns)) . ' FROM ' . $table;
         if ($where !== null)
             $query .= ' WHERE ' . $where;
+        if ($groupBy !== null)
+            $query .= ' GROUP BY ' . $groupBy;
         if ($sortColumn !== null && $sortOrder !== null)
             $query .= ' ORDER BY ' . $this->PrepareColumns($sortColumn) . strtoupper($sortOrder);
         if ($limit !== null)
             $query .= ' LIMIT ' . $limit;
-
-        /*if (str_contains($query, '`Result` is not null'))
-            return $query;*/
         if (strlen($query)) {
             $result = $this->connection->query($query);
-
             if (!is_bool($result)) {
                 while ($row = $result->fetch_all()) {
                     $res[] = $row;
                 }
             }
         }
-
         if (is_array($res) && !empty($res))
             if ($limit === 1)
                 return($res[0][0]);

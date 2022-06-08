@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function() {
-    function PrepareRequest(path = "/app/models/ajax.php") {
+    function prepareRequest(path = "/app/models/ajax.php") {
         const request = new XMLHttpRequest();
         const url = path;
         request.responseType = "json";
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded",function() {
         let textarea = feedback_form.querySelector("textarea");
         params = params + textarea.name + '=' + textarea.value;
 
-        let request = PrepareRequest();
+        let request = prepareRequest();
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
                 if (request.response.status === 'success') {
@@ -64,13 +64,7 @@ document.addEventListener("DOMContentLoaded",function() {
     let plans = document.querySelector('.subscription section.plans');
     plans?.addEventListener('click', (e) => {
         if (e.target.closest('.plan')) {
-            let plan = e.target.closest('.plan');
-            let heading = plan.querySelector('.heading');
-            let price = plan.querySelector('.price');
-            let data = '<div class="confirm_text">';
-            data += 'You have chosen plan "'+heading.innerHTML+'",<br>payment sum: '+price.innerHTML+'</div>';
-            data += '<button id="confirm_payment"><i class="fa fa-shopping-cart"></i> Buy</button>'
-            ShowPopup(data);
+
         }
     });
 
@@ -89,7 +83,7 @@ document.addEventListener("DOMContentLoaded",function() {
                 params += field.name + '=' + field.value + '&';
             });
             params = params.substr(0,params.length-1);
-            let request = PrepareRequest();
+            let request = prepareRequest();
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
                     if (request.response.status === 'auth success' || request.response.status === 'reg success' || request.response.status === 'renew success') {
@@ -156,7 +150,7 @@ document.addEventListener("DOMContentLoaded",function() {
             let input = profile_form.querySelector('input');
                 params += input.name + '=' + input.value;
 
-            let request = PrepareRequest();
+            let request = prepareRequest();
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
                     if (request.response.status === 'success') {
@@ -174,7 +168,7 @@ document.addEventListener("DOMContentLoaded",function() {
     document.getElementById('log_out')?.addEventListener('click', (e)=>{
         document.cookie = 'authorized=false';
         let params = 'action=log_out';
-        let request = PrepareRequest();
+        let request = prepareRequest();
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
                 if (request.response.status === 'success') {
@@ -198,7 +192,7 @@ document.addEventListener("DOMContentLoaded",function() {
                 }
                 let timer = item.parentElement.parentElement.querySelector('.timer');
                 timer?.remove();
-                let request = PrepareRequest();
+                let request = prepareRequest();
                 request.addEventListener("readystatechange", () => {
                     if (request.readyState === 4 && request.status === 200) {
                         //item.parentElement.classList.add('opened');
@@ -232,7 +226,11 @@ document.addEventListener("DOMContentLoaded",function() {
 
     document.querySelectorAll('.post button.like').forEach(like => {
         like.addEventListener('click', (e)=>{
-            let post_id = like.closest('.post')?.querySelector('.heading').dataset.id;
+            let post_id;
+            if (!like.closest('.post')?.querySelector('.heading'))
+                post_id = like.closest('.post')?.dataset.id;
+            else
+                post_id = like.closest('.post')?.querySelector('.heading')?.dataset.id;
             let params;
             if (like.classList.contains('chosen')) {
                 params = 'action=remove_favourite&post='+post_id;
@@ -240,7 +238,7 @@ document.addEventListener("DOMContentLoaded",function() {
                 params = 'action=add_favourite&post='+post_id;
             }
 
-            let request = PrepareRequest();
+            let request = prepareRequest();
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
                     if (request.response.status === 'add success') {
@@ -257,7 +255,7 @@ document.addEventListener("DOMContentLoaded",function() {
     if (window.location.href.indexOf('/post/item/') > -1) {
         let post = document.querySelector('.post_item .post')?.dataset.id;
         let params = 'action=add_viewing&post='+post;
-        let request = PrepareRequest();
+        let request = prepareRequest();
         let id;
         let is_got = false;
         request.addEventListener("readystatechange", () => {
@@ -280,7 +278,18 @@ document.addEventListener("DOMContentLoaded",function() {
             if (!is_got) {
                 confirm.closest('.post_item')?.querySelector('.content_area')?.classList.add('opened');
                 let params = 'action=edit_viewing&id=' + id;
-                let request = PrepareRequest();
+                let request = prepareRequest();
+                request.addEventListener("readystatechange", () => {
+                    if (request.readyState === 4 && request.status === 200) {
+                        if (request.response.unlock_status === 'success') {
+                            let num = document.querySelector('.num_a .num');
+                            if (num.innerHTML.length > 0)
+                                num.innerHTML = (parseInt(num.innerHTML) + 1).toString();
+                            else
+                                num.innerHTML = "1";
+                        }
+                    }
+                });
                 request.send(params);
             } else {
                 ShowError(confirm.parentElement, 'you have already got it');
@@ -289,7 +298,7 @@ document.addEventListener("DOMContentLoaded",function() {
     }
 
 //timer
-    function ShowCounter(timer, time_string = "2021-12-1 15:37:25", active = null) {
+    function ShowCounter(timer, time_string, active = null) {
         let countDownDate = new Date(time_string).getTime();
         let x = setInterval(function () {
             let distance;
@@ -316,11 +325,11 @@ document.addEventListener("DOMContentLoaded",function() {
                     if (test) {
                         test.classList.add('expired');
                         let params = 'action=edit_test&test=' + test.dataset.id;
-                        let request = PrepareRequest();
+                        let request = prepareRequest();
                         request.send(params);
                     } else {
                         let params = 'action=get_next_test';
-                        let request = PrepareRequest();
+                        let request = prepareRequest();
                         request.addEventListener("readystatechange", () => {
                             if (request.readyState === 4 && request.status === 200) {
                                 ShowCounter(timer, request.response.next);
@@ -341,7 +350,7 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         else if (timer.parentElement.classList.contains('info') && (timer.innerHTML === "0d 0h 0m 0s" || timer.innerHTML === '')) {
             let params = 'action=get_next_test';
-            let request = PrepareRequest();
+            let request = prepareRequest();
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
                     if (request.response != null && 'next' in request.response)

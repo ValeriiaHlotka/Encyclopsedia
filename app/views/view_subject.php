@@ -8,16 +8,18 @@
         foreach ($data as $row) {
             echo '
                 <div class="post">
-                <button class="like">
-                <i class="fa fa-heart"></i>
-                </button>
+                ';
+            if (key_exists("ID",$_SESSION))
+                echo '<button class="like"><i class="fa fa-heart"></i></button>';
+            echo '
+               
                     <div class="heading" data-id="' . $row[0] . '">
                         <a href="/post/item/' . $row[0] . '">
                             ' . $row[2] . '
                         </a>
                     </div>
                     <div class="text">
-                    ' . (key_exists('6', $row) && $row['7'] === 'image' ? '<img src=' . $row['6'] . ' alt="" height="100px">' : ' ') . '
+                    ' . (key_exists('6', $row) && $row['7'] === 'image' ? '<img src=' . $row['6'] . ' alt="" height="150px">' : ' ') . '
                         
                         <div class="info">
                             ' . $row[4] . '

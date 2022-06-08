@@ -6,9 +6,11 @@
             echo '<h2>'.$row[2].'</h2>';
             echo '
                 <div class="post" data-id="' . $row[0] . '">
-                <button class="like">
-                <i class="fa fa-heart"></i>
-                </button>
+                ';
+            if (key_exists("ID",$_SESSION))
+                echo '<button class="like"><i class="fa fa-heart"></i></button>';
+            echo '
+               
                     <div class="text">                      
                         <div class="info">
                         ' . (key_exists('6', $row) && $row['7'] === 'image' ? '<img src=' . $row['6'] . ' alt="" height="200px">' : ' ') . '
@@ -40,14 +42,15 @@
                     $marker = $ar["marker"];
                     $model = $ar["model"];
                     if (!$tipped) {
-                        echo '<div class="ar_area"><div class="ar_area_text"><img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'"><br><br>How to use it? If you are watching this from phone, click the button below. Otherwise skan QR below. Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br><img src="/qr.png" alt="qr"></div>';
-                        /*$str = file_get_contents("entertainment/AR/templates/model-viewer.php");
-                        $str = str_replace("#MODEL", $model, $str);
-                        echo $str;*/
+                        echo '<div class="ar_area">
+                                   <div class="ar_area_text">
+                                   <img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'">
+                                   <br><br>How to use it? If you are watching this from phone, click the QR below. Otherwise skan QR below. 
+                                   Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br>
+                                   <a href="'.$ar["link"].'"><img height="250px" src="'.$ar["qr_link"].'" alt="qr"></a>
+                                   </div>';
                         $tipped = true;
                     }
-
-                    echo '<button class="ar_button">'.$ar["name"].'</button>';
                 }
                 echo '</div>';
 
@@ -72,7 +75,7 @@
             }
             echo 'href="/post/item/' . $data['siblings'][1][0] . '"><i class="fa fa-arrow-right"></i> ' . $data['siblings'][1][1] . '</a></div>';
 
-            if (array_key_exists('ID', $_SESSION)) {
+            if (array_key_exists('ID', $_SESSION) && array_key_exists('tests', $data)) {
                 echo '<div class="content_area"><div class="heading">Test yourself!</div>';
                 foreach ($data['tests'] as $test) {
                     echo '

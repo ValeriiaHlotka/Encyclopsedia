@@ -2,41 +2,25 @@
     <h2>Rating</h2>
     <div class="content_area">
         <div class="tabs">
-            <div class="tab chosen" data-id="*rating_id">Rating 1</div>
-            <div class="tab">Rating 2</div>
-            <div class="tab">Rating 3</div>
+            <a href="/rating/read"> <div class="tab <?php echo ($_SERVER['REQUEST_URI'] === "/rating/read" || $_SERVER['REQUEST_URI'] === "/rating") ? "chosen" : "" ?>" id="read">Rating by read</div></a>
+            <a href="/rating/unlocked"> <div class="tab <?php echo $_SERVER['REQUEST_URI'] === "/rating/unlocked" ? "chosen" : "" ?>" id="unlocked">Rating by unlocked</div></a>
+            <a href="/rating/account"> <div class="tab <?php echo $_SERVER['REQUEST_URI'] === "/rating/account" ? "chosen" : "" ?>" id="account">Rating by account</div></a>
         </div>
         <table class="table">
             <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>ZIP</th>
-                <th>Birthday</th>
-                <th>Points</th>
-                <th>Average</th>
-                <th>Amount</th>
+                <th>Result</th>
+                <th>User</th>
             </tr>
             </thead>
             <tbody>
+            <?php foreach ($data[0] as $datum): ?>
             <tr>
-                <td>Gloria</td>
-                <td>Reeves</td>
-                <td>67439</td>
-                <td>10/18/1985</td>
-                <td>4</td>
-                <td>0.1</td>
-                <td>$50</td>
+                <?php foreach ($datum as $field): ?>
+                    <td><?php echo $field; ?></td>
+                <?php endforeach; ?>
             </tr>
-            <tr>
-                <td>Gloria</td>
-                <td>Reeves</td>
-                <td>67439</td>
-                <td>10/18/1985</td>
-                <td>4</td>
-                <td>0.1</td>
-                <td>$50</td>
-            </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
 

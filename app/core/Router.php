@@ -5,7 +5,6 @@ class Router
 {
     static function start()
     {
-        // контроллер и действие по умолчанию
         $controller_name = 'Main';
         $action_name = 'index';
 
@@ -13,13 +12,15 @@ class Router
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
-        // получаем имя контроллера
         if ( !empty($routes[1]) )
         {
             $controller_name = substr($routes[1], 0, (!str_contains($routes[1], '?') ? null : strpos($routes[1], '?')));
+            if (!array_key_exists('ID', $_SESSION) && ($controller_name == "rating" || $controller_name == "unlocked" || $controller_name == "favourites" || $controller_name == "profile"))
+            {
+                $controller_name = "Auth";
+            }
         }
 
-        // получаем имя экшена
         if ( !empty($routes[2]) )
         {
             $action_name = $routes[2];
@@ -30,12 +31,9 @@ class Router
             $action_param = $routes[3];
         }
 
-        // добавляем префиксы
         $model_name = 'Model_'.$controller_name;
         $controller_name = 'Controller_'.$controller_name;
         $action_name = 'action_'.$action_name;
-
-        // подцепляем файл с классом модели (файла модели может и не быть)
 
         $model_file = strtolower($model_name).'.php';
         $model_path = "app/models/".$model_file;
@@ -44,7 +42,6 @@ class Router
             include "app/models/".$model_file;
         }
 
-        // подцепляем файл с классом контроллера
         $controller_file = strtolower($controller_name).'.php';
         $controller_path = "app/controllers/".$controller_file;
         if(file_exists($controller_path))
@@ -55,7 +52,7 @@ class Router
         {
             (new Router)->ErrorPage404();
         }
-        // создаем контроллер
+
         $controller = new $controller_name;
         $action = $action_name;
 
@@ -64,7 +61,6 @@ class Router
             if (!empty($action_param)) {
                 $controller->$action($action_param);
             } else
-            // вызываем действие контроллера
                 $controller->$action();
         }
         else

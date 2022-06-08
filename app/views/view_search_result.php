@@ -5,9 +5,11 @@ if ($data !== false) {
     foreach ($data as $row) {
         //print_r($row);
         echo '<div class="post">
-        <button class="like">
-                <i class="fa fa-heart"></i>
-                </button>
+        ';
+        if (key_exists("ID",$_SESSION))
+            echo '<button class="like"><i class="fa fa-heart"></i></button>';
+        echo '
+              
                     <div class="heading" data-id="' . $row[0] . '">
                         <a href="#">
                             ' . $row[2] . '

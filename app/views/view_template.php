@@ -31,14 +31,14 @@
                     <div class="sublis">
                         <ul>
                             <li><a href="/subject/item/1">Nature</a></li>
-                            <li><a href="/subject/item/2">2</a></li>
-                            <li><a href="/subject/item/3">3</a></li>
+                            <li><a href="/subject/item/2">Mechanics</a></li>
                         </ul>
                     </div>
                 </li>
                 <li data-need-auth="true">
-                    <a href="/unlocked">
+                    <a href="/unlocked" class="num_a">
                         Unlocked
+                        <div class="num"></div>
                     </a>
                 </li>
                 <li data-need-auth="true">

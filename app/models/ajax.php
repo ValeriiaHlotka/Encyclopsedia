@@ -29,10 +29,10 @@ if (isset($_POST['auth_login']) && isset($_POST['auth_password'])) {
             $subscription = $connection->Select('subscriptions', [0=>'id'], 1, '`user`='.$user[0].' and `end`>CURRENT_TIME');
             if ($subscription) {
                 $result['plan'] = $subscription[0];
-                $_SESSION['rights'] = 2;
+                $_SESSION['rights'] = (int)$result['plan'];
             } else {
                 $result['plan'] = false;
-                $_SESSION['rights'] = 1;
+                $_SESSION['rights'] = 0;
             }
             $result['status'] = 'auth success';
             $_SESSION['ID'] = $user[0];
@@ -51,11 +51,12 @@ if (isset($_POST['reg_login']) && isset($_POST['reg_password'])) {
     if ($user)
         $result['status'] = 'login exists';
     else {
-        $insert = $connection->Insert('user', [0=>$_POST['reg_login'],1=>password_hash($_POST['reg_password'], PASSWORD_DEFAULT )],[0=>'Nickname', 1=>'Password']);
+        $insert = $connection->Insert('user', [0=>$_POST['reg_login'],1=>password_hash($_POST['reg_password'], PASSWORD_DEFAULT )]
+            ,[0=>'Nickname', 1=>'Password']);
         if ($insert) {
             $result['status'] = 'reg success';
             $_SESSION['ID'] = $connection->getConection()->insert_id;
-            $_SESSION['rights'] = 1;
+            $_SESSION['rights'] = 0;
             if (isset($_POST['inviter'])) {
                 $add_points = $connection->Update('user', '`Account` + 200', '`ID`='.$_POST['inviter'], [0=>'Account']);
                 if ($add_points) {
@@ -147,7 +148,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'get_tests') {
 /*
  * register invited friend - 200
  * test under post - 10
- * test in notifics firstly - 20
+ * test in notifications firstly - 20
  * secondly - 15
  * thirdly - 5
  * */
@@ -180,7 +181,8 @@ if (isset($_POST['test']) && isset($_POST['answer'])) {
         } else {
             $result['status'] = 'true';
             $value = 100;
-            $repeat = $connection->Query('SELECT count(`ID`) from test where `Question`= (select `Question` from test where `ID`='.$_POST['test'].') and `Situation` is not null and `Date`<CURRENT_TIME');
+            $repeat = $connection->Query('SELECT count(`ID`) from test where `Question`= (select `Question` from test where `ID`='.$_POST['test'].') and 
+            `Situation` is not null and `Date`<CURRENT_TIME');
             if ($repeat) {
 //shows for $repeat[0][0][0]-th time
                 $points = match ($repeat[0][0][0]) {
@@ -284,14 +286,39 @@ if (isset($_POST['action']) && isset($_POST['post']) && ($_POST['action']==='add
 
 //got it! click
 if (isset($_POST['action']) && isset($_POST['id']) && ($_POST['action']==='edit_viewing')) {
-    /*$viewing = $connection->Select('viewing', [0=>'ID'], 1, '`ID`='.$_POST['id'].' and `GotIt`=1');
-    if (!$viewing) {*/
+    /*$viewing = $connection->Select('viewing', [0=>'ID'], 1, '`ID`='.$_POST['id'].' and `GotIt`=1');*/
+
         $edited = $connection->Update('viewing', 1, '`ID`=' . $_POST['id'], [0 => 'GotIt']);
         if ($edited) {
             $result['status'] = 'success';
         } else {
             $result['status'] = 'failure';
         }
+
+        if (array_key_exists("ID", $_SESSION)) {
+            $last_got = $connection->Query('select max(`Date`) from unlocked where `User`='.$_SESSION['ID']);
+            if ($last_got && $last_got[0][0][0] != null) {
+                $query = 'Select count(`ID`) from viewing where `User`='.$_SESSION['ID'].' and `GotIt`=1 and `Date`>'.$last_got[0][0][0];
+            } else {
+                $query = 'Select count(`ID`) from viewing where `User`='.$_SESSION['ID'].' and `GotIt`=1';
+            }
+            $count = $connection->Query($query);
+
+            if ($count) {
+                if ($count[0][0][0] >= 25) {
+                    //todo logics to unlock games
+                    $id = $connection->Select('entertainment', [0=>'ID'], 1, '`Subject` is null and `Type` != "game"');
+                    if ($id) {
+                        $inserted = $connection->Insert('unlocked', [0 => 'now()', 1 => $_SESSION['ID'], 2 => $id[0][0]], [0 => 'Date', 1 => 'User', 2 => 'Entertainment']);
+                        if ($inserted)
+                            $result['unlock_status'] = 'success';
+                        else
+                            $result['unlock_status'] = 'insert failure';
+                    } else $result['unlock_status'] = 'no ar to unlock';
+                }
+            }
+        }
+
 
         $article_id = $connection->Select('viewing', [0 => 'Article', 1 => 'Date', 2 => 'User'], 1, '`ID`=' . $_POST['id'] . ' and `User` is not null and `GotIt`=1');
         if ($article_id && array_key_exists('ID', $_SESSION) && $_SESSION['ID'] === $article_id[2]) {
@@ -331,8 +358,7 @@ if (isset($_POST['action']) && isset($_POST['id']) && ($_POST['action']==='edit_
 
             }
         }
-    /*} else
-        $result['status'] = 'already got it';*/
+
     echo json_encode($result);
 }
 

@@ -174,7 +174,7 @@ h2 {
     font-weight: normal;
     margin-top: 0;
 }
-.post, .content_area, .unlocked .item {
+.post, .content_area, .unlocked .item, .unlockeds .item {
     margin-top: 50px;
     background-color: #f0f8ff08;
     padding: 50px;
@@ -321,7 +321,7 @@ form#feedback button:hover, button#confirm_payment:hover, form#authreg button:ho
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 250px;
+    min-width: 200px;
     height: 300px;
     border: 1px solid aliceblue;
     padding: 20px;
@@ -404,6 +404,13 @@ form#profile {
 .unlocked .container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+.unlocked .item {
+    display: flex;
+}
+.unlocked .ar_area {
+    margin: 10px 55px;
+    width: 300px;
+}
 .container .text {
     display: block;
 }
@@ -419,7 +426,7 @@ form#profile {
 }
 .post_item .post .text img {
     float: left;
-    width: 200px;
+    /*width: 200px;*/
     margin-bottom: 15px;
 }
 .post {
@@ -609,4 +616,17 @@ button.like.chosen:hover {
 }
 .ar_area.opened {
     display: block;
+}
+.do_you_know .answer  {
+    cursor: default;
+}
+.do_you_know .answer:hover {
+    color: unset;
+}
+.num {
+    margin-left: 2px;
+    font-size: 10px;
+}
+.num_a {
+    display: flex;
 }

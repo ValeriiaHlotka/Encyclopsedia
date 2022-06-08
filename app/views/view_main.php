@@ -23,11 +23,10 @@
         echo '<a href="app/views/view_entertainments.php"></a>';*/
         foreach ($data as $row) {
             echo '
-                <div class="post">
-                <button class="like">
-                <i class="fa fa-heart"></i>
-                </button>
-                    <div class="heading" data-id="' . $row[0] . '">
+                <div class="post">';
+            if (key_exists("ID",$_SESSION))
+                echo '<button class="like"><i class="fa fa-heart"></i></button>';
+            echo '<div class="heading" data-id="' . $row[0] . '">
                         <a href="/post/item/' . $row[0] . '">
                             ' . $row[2] . '
                         </a>

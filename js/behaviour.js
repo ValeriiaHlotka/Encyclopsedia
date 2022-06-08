@@ -156,6 +156,11 @@
             }
         });
 
+        if (document.querySelector('.authentication')) {
+            authreg_popup.classList.add('opened');
+            authreg_popup.dataset.link = window.location.href;
+        }
+
         document.querySelectorAll('.do_you_know .item').forEach(item => {
             item?.addEventListener('click', (e)=>{
                 if (e.target.closest('.question')) {

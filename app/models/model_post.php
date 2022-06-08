@@ -41,7 +41,7 @@ class Model_Post extends Model
                     $article[0]['ar'][$item[0]]['model'] = $item[3];
                     $article[0]['ar'][$item[0]]['name'] = $item[4];
 
-                    $path = "media/coverings/";
+                    $path = "media/images/";
                     $cover = substr($item[3], strrpos($item[3], "/") + 1);
                     $cover = substr($cover, 0, strrpos($cover, "."));
                     $files = glob($path . $cover . ".*", GLOB_ERR);
@@ -54,6 +54,16 @@ class Model_Post extends Model
                     $files = glob($path . $marker . ".png", GLOB_ERR);
                     $marker_link = ($files ? $files[0] : "#");
                     $article[0]['ar'][$item[0]]['marker_link'] = $marker_link;
+                    $article[0]['ar'][$item[0]]['link'] = "https://encyclopsedia.azurewebsites.net/entertainments/show/".$marker;
+                    $files = glob("media/qr/" . $marker . ".png", GLOB_ERR);
+                    if (!$files)
+                    {
+                        include "QR.php";
+                        $qr = new QR();
+                        $qr->URL("https://encyclopsedia.azurewebsites.net/entertainments/show/".$marker);
+                        $qr->saveImage("media/qr/$marker.png");
+                    }
+                    $article[0]['ar'][$item[0]]['qr_link'] = "/media/qr/$marker.png";
                 }
             }
 

@@ -11,7 +11,24 @@ class Controller_Rating extends Controller
 
     function action_index()
     {
-        $data = $this->model->get_data();
+        $this->action_read();
+    }
+
+    function action_read()
+    {
+        $data = $this->model->get_data_by_param("read");
+        $this->view->generate('view_rating.php', 'view_template.php', $data);
+    }
+
+    function action_unlocked()
+    {
+        $data = $this->model->get_data_by_param("unlocked");
+        $this->view->generate('view_rating.php', 'view_template.php', $data);
+    }
+
+    function action_account()
+    {
+        $data = $this->model->get_data_by_param("account");
         $this->view->generate('view_rating.php', 'view_template.php', $data);
     }
 }

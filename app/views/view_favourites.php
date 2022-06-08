@@ -15,7 +15,7 @@
                         </a>
                     </div>
                     <div class="text">
-                    ' . (key_exists('6', $row) && $row['7'] === 'image' ? '<img src=' . $row['6'] . ' alt="" height="100px">' : ' ') . '
+                    ' . (key_exists('6', $row) && $row['7'] === 'image' ? '<img src=' . $row['6'] . ' alt="" height="150px">' : ' ') . '
                         
                         <div class="info">
                             ' . $row[4] . '
