@@ -4,13 +4,13 @@
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 <body style="margin : 0px; overflow: hidden;">
 <a-scene embedded arjs>
-    <a-marker type="pattern" url="entertainment/AR/markers/ball.patt">
+    <a-marker type="pattern" url="entertainment/AR/markers/skull.patt">
         <a-entity
-            position="0 -1 0"
-            scale="0.05 0.05 0.05"
-            gltf-model="entertainment/AR/models/banana.glb"
-            rotation="0 90 45"
-        ></a-entity>
+                position="0 -1 0"
+                scale="0.05 0.05 0.05"
+                gltf-model="entertainment/AR/models/skull.glb"
+                rotation="0 90 45"
+                    ></a-entity>
     </a-marker>
     <a-entity camera></a-entity>
 </a-scene>

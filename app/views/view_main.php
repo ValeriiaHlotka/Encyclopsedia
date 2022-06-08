@@ -16,11 +16,6 @@
     echo '******';*/
 
     if ($data !== false) {
-        //echo '<a href="entertainment/AR/templates/marker.php"></a>';
-
-        /*$str = file_get_contents("entertainment/AR/templates/marker.php");
-        file_put_contents("app/views/view_entertainments.php", str_replace("burger", "banana", $str));
-        echo '<a href="app/views/view_entertainments.php"></a>';*/
         foreach ($data as $row) {
             echo '
                 <div class="post">';

@@ -1,7 +1,6 @@
 <div class="post_item">
     <?php
         if ($data!==false) {
-            //print_r($data['tests']);
             $row = $data[0];
             echo '<h2>'.$row[2].'</h2>';
             echo '

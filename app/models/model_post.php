@@ -54,7 +54,7 @@ class Model_Post extends Model
                     $files = glob($path . $marker . ".png", GLOB_ERR);
                     $marker_link = ($files ? $files[0] : "#");
                     $article[0]['ar'][$item[0]]['marker_link'] = $marker_link;
-                    $article[0]['ar'][$item[0]]['link'] = "https://encyclopsedia.azurewebsites.net/entertainments/show/".$marker;
+                    $article[0]['ar'][$item[0]]['link'] = "https://encyclopsedia.azurewebsites.net/entertainments/show/".$marker.".php";
                     $files = glob("media/qr/" . $marker . ".png", GLOB_ERR);
                     if (!$files)
                     {

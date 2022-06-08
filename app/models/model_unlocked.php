@@ -32,7 +32,7 @@ class Model_Unlocked extends Model
             {
                 $unlocked[0][0][] = "/".$filename;
             }
-            $url = "https://encyclopsedia.azurewebsites.net/entertainments/show/".$name;
+            $url = "https://encyclopsedia.azurewebsites.net/entertainments/show/".$name.".php";
             $unlocked[0][0][] = $url;
             if (!glob("media/qr/$name.*"))
             {
