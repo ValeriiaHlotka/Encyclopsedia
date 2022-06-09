@@ -33,6 +33,10 @@
                             <li><a href="/subject/item/1">Nature</a></li>
                             <li><a href="/subject/item/2">Mechanics</a></li>
                             <li><a href="/subject/item/3">Health</a></li>
+                            <li><a href="/subject/item/4">Science</a></li>
+                            <li><a href="/subject/item/5">Society</a></li>
+                            <li><a href="/subject/item/6">Sports</a></li>
+                            <li><a href="/subject/item/7">Philosophy</a></li>
                         </ul>
                     </div>
                 </li>
