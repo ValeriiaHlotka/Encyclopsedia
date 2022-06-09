@@ -43,7 +43,7 @@
                     if (!$tipped) {
                         echo '<div class="ar_area">
                                    <div class="ar_area_text">
-                                   <img width="150px" src="/'.$ar["cover_link"].'" alt="'.$ar["name"].'">
+                                   
                                    <br><br>How to use it? If you are watching this from phone, click the QR below. Otherwise skan QR below. 
                                    Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br>
                                    <a href="'.$ar["link"].'"><img height="250px" src="'.$ar["qr_link"].'" alt="qr"></a>

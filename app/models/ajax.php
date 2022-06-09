@@ -384,7 +384,7 @@ if (isset($_POST['action']) && ($_POST['action']==='get_next_test')) {
             $result['status'] = 'failure';
         }
 
-        $array = $connection->Select('tests', '*', 3, '`date` <= CURRENT_TIME and `user`=' . $_SESSION['ID'] . ' and `result` IS NULL');
+        $array = $connection->Select('tests', '*', null, '`date` <= CURRENT_TIME and `user`=' . $_SESSION['ID'] . ' and `result` IS NULL');
         if ($array !== false) {
             foreach ($array as $item) {
                 $situation = '';
@@ -418,7 +418,7 @@ if (isset($_POST['action']) && ($_POST['action']==='get_next_test')) {
             }
             $result['test'] = $str;
         } else {
-            $result['test'] = 'failure';
+            $result['test'] = '';
         }
     } else {
         $result['status'] = 'unauthed';

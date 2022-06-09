@@ -291,6 +291,18 @@ document.addEventListener("DOMContentLoaded",function() {
                     }
                 });
                 request.send(params);
+                if (document.querySelector('.timer').innerHTML === "")
+                {
+                    params = 'action=get_next_test';
+                    request = prepareRequest();
+                    request.addEventListener("readystatechange", () => {
+                        if (request.readyState === 4 && request.status === 200) {
+                            if (request.response != null && 'next' in request.response)
+                                ShowCounter(document.querySelector('.timer'), request.response.next);
+                        }
+                    });
+                    request.send(params);
+                }
             } else {
                 ShowError(confirm.parentElement, 'you have already got it');
             }
@@ -344,7 +356,7 @@ document.addEventListener("DOMContentLoaded",function() {
     }
 //end timer
 
-    document.querySelectorAll('.timer').forEach(timer=>{
+    document.querySelectorAll('.notifications .timer').forEach(timer => {
         if ('date' in timer.parentElement.dataset && !timer.classList.contains('opened')) {
             ShowCounter(timer, timer.parentElement.dataset.date, 3);
         }
@@ -355,6 +367,8 @@ document.addEventListener("DOMContentLoaded",function() {
                 if (request.readyState === 4 && request.status === 200) {
                     if (request.response != null && 'next' in request.response)
                         ShowCounter(timer, request.response.next);
+                    let text = timer.parentElement.querySelector('.text');
+                    text.innerHTML = request.response.test;
                 }
             });
             request.send(params);

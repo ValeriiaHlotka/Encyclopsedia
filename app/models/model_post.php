@@ -33,7 +33,7 @@ class Model_Post extends Model
                 }
             }
 
-            $ar = $connection->Query('SELECT * from entertainment where `Subject`='.$article[0][0][3]);
+            $ar = $connection->Query('SELECT * from entertainment where `Subject`='.$article[0][0][0]);
             if ($ar) {
                 foreach ($ar[0] as $item) {
                     $article[0]['ar'][$item[0]]['type'] = $item[1];
