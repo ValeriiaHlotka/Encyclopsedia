@@ -9,7 +9,7 @@
             position="0 -1 0"
             scale="0.05 0.05 0.05"
             gltf-model="/entertainment/AR/models/banana.glb"
-            rotation="0 90 45"
+            rotation="0 90 90"
         ></a-entity>
     </a-marker>
     <a-entity camera></a-entity>
