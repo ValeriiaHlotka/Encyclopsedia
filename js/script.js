@@ -63,8 +63,17 @@ document.addEventListener("DOMContentLoaded",function() {
 
     let plans = document.querySelector('.subscription section.plans');
     plans?.addEventListener('click', (e) => {
-        if (e.target.closest('.plan')) {
-
+        if (e.target.closest('.plan') && e.target.closest('.discount')) {
+            setTimeout(() => {
+                let params = 'action=plan_bought&id='+e.target.closest('.plan').dataset.id+'&sum='+e.target.closest('.plan').dataset.sum;
+                let request = prepareRequest();
+                request.addEventListener("readystatechange", () => {
+                    if (request.readyState === 4 && request.status === 200) {
+                        window.location.reload();
+                    }
+                });
+                request.send(params);
+            }, 5000);
         }
     });
 
@@ -325,11 +334,9 @@ document.addEventListener("DOMContentLoaded",function() {
                 let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 timer.classList.add('opened');
-                timer.parentElement.querySelector('.timer_label')?.classList.add('opened');
+                timer.parentElement?.querySelector('.timer_label')?.classList.add('opened');
                 timer.innerHTML = days + "d " + hours + "h "
-                    + minutes + "m";
-                if (active !== null)
-                    timer.innerHTML += " " + seconds + "s";
+                    + minutes + "m " + seconds + " s";
                 if (distance < 0) {
                     clearInterval(x);
                     timer.innerHTML = "0d 0h 0m 0s";
@@ -346,7 +353,7 @@ document.addEventListener("DOMContentLoaded",function() {
                             if (request.readyState === 4 && request.status === 200) {
                                 ShowCounter(timer, request.response.next);
                                 let text = timer.parentElement.querySelector('.text');
-                                text.innerHTML = request.response.test;
+                                text.innerHTML = request.response.test || "Nothing by now.";
                             }
                         });
                         request.send(params);
@@ -367,15 +374,9 @@ document.addEventListener("DOMContentLoaded",function() {
                 if (request.readyState === 4 && request.status === 200) {
                     if (request.response != null && 'next' in request.response)
                         ShowCounter(timer, request.response.next);
-                    let text = timer.parentElement.querySelector('.text');
-                    text.innerHTML = request.response.test;
                 }
             });
             request.send(params);
         }
     });
-
-
-
-
 });

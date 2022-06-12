@@ -11,7 +11,7 @@
                 </div>
                 <div class="ar_area opened"><div class="ar_area_text">
                         <br><br>How to use it? If you are watching this from phone, click the QR below. Otherwise skan QR below. Than place <b>
-                            <a href="<?php echo $datum[6]; ?>" >this image</a>
+                            <a target="_blank" href="<?php echo $datum[6]; ?>" >this image</a>
                         </b> in the camera<br><br><br>
                         <a href="<?php echo $datum[7]; ?>"><img height="300px" src="<?php echo $datum[8]; ?>" alt="qr"></a>
                     </div>

@@ -22,11 +22,10 @@ if (isset($_POST['fb_name']) && isset($_POST['fb_mail']) && isset($_POST['fb_mes
 
 //auth
 if (isset($_POST['auth_login']) && isset($_POST['auth_password'])) {
-    //todo users` rights
     $user = $connection->Select('user', [0=>'ID', 1=>'Password'], 1, '`Nickname`="'.$_POST['auth_login'].'"');
     if ($user) {
         if (password_verify($_POST['auth_password'], $user[1])) {
-            $subscription = $connection->Select('subscriptions', [0=>'id'], 1, '`user`='.$user[0].' and `end`>CURRENT_TIME');
+            $subscription = $connection->Select('subscriptions', [0=>'id'], 1, '`user`='.$user[0].' and `end`>DATE_ADD(now(),interval 3 hour)');
             if ($subscription) {
                 $result['plan'] = $subscription[0];
                 $_SESSION['rights'] = (int)$result['plan'];
@@ -141,7 +140,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'log_out') {
 
 //load tests
 if (isset($_POST['action']) && $_POST['action'] === 'get_tests') {
-    $tests = $connection->Select('tests', '*', null, '`date` < CURRENT_TIME and `user`='.$_SESSION['ID'], [0=>'date'], 'asc');
+    $tests = $connection->Select('tests', '*', null, '`date` < DATE_ADD(now(),interval 3 hour) and `user`='.$_SESSION['ID'], [0=>'date'], 'asc');
     echo json_encode($tests);
 }
 
@@ -182,7 +181,7 @@ if (isset($_POST['test']) && isset($_POST['answer'])) {
             $result['status'] = 'true';
             $value = 100;
             $repeat = $connection->Query('SELECT count(`ID`) from test where `Question`= (select `Question` from test where `ID`='.$_POST['test'].') and 
-            `Situation` is not null and `Date`<CURRENT_TIME');
+            `Situation` is not null and `Date`<DATE_ADD(now(),interval 3 hour)');
             if ($repeat) {
 //shows for $repeat[0][0][0]-th time
                 $points = match ($repeat[0][0][0]) {
@@ -199,7 +198,7 @@ if (isset($_POST['test']) && isset($_POST['answer'])) {
                 }
             }
         }
-        $update = $connection->Update('test', 'now(),'.$value, '`ID`='.$_POST['test'], [0=>'Date', 1=>'Result']);
+        $update = $connection->Update('test', date('Y-m-d H:i:s').','.$value, '`ID`='.$_POST['test'], [0=>'Date', 1=>'Result']);
         if (!$update) {
             $result['status'] = 'update error';
         }
@@ -306,7 +305,6 @@ if (isset($_POST['action']) && isset($_POST['id']) && ($_POST['action']==='edit_
 
             if ($count) {
                 if ($count[0][0][0] >= 25) {
-                    //todo logics to unlock games
                     $id = $connection->Select('entertainment', [0=>'ID'], 1, '`Subject` is null and `Type` != "game"');
                     if ($id) {
                         $inserted = $connection->Insert('unlocked', [0 => 'now()', 1 => $_SESSION['ID'], 2 => $id[0][0]], [0 => 'Date', 1 => 'User', 2 => 'Entertainment']);
@@ -323,10 +321,7 @@ if (isset($_POST['action']) && isset($_POST['id']) && ($_POST['action']==='edit_
         $article_id = $connection->Select('viewing', [0 => 'Article', 1 => 'Date', 2 => 'User'], 1, '`ID`=' . $_POST['id'] . ' and `User` is not null and `GotIt`=1');
         if ($article_id && array_key_exists('ID', $_SESSION) && $_SESSION['ID'] === $article_id[2]) {
             $questions = $connection->Select('question', [0 => 'ID'], null, '`Article`=' . $article_id[0]);
-            //$result['$questions'] = $questions;
-            //todo get only those situations which fits age
             $situations = $connection->Select('situation', [0 => 'ID']);
-            //$result['$situations'] = $situations;
             if ($questions && $situations) {
                 $tests = [];
                 foreach ($questions as $question) {
@@ -376,7 +371,7 @@ if (isset($_POST['action']) && isset($_POST['test']) && ($_POST['action']==='edi
 //send date of next test to realtime timer start and current test appearance when timer became 0
 if (isset($_POST['action']) && ($_POST['action']==='get_next_test')) {
     if (array_key_exists('ID', $_SESSION)) {
-        $next = $connection->Select('test', [0 => 'Date'], 1, '`User`=' . $_SESSION['ID'] . ' and `Date` = (SELECT min(`Date`) from test where `Date` > CURRENT_TIME)');
+        $next = $connection->Select('test', [0 => 'Date'], 1, '`User`=' . $_SESSION['ID'] . ' and `Date` = (SELECT min(`Date`) from test where `Date` > DATE_ADD(now(),interval 3 hour))');
         if ($next) {
             $result['status'] = 'success';
             $result['next'] = $next[0];
@@ -384,7 +379,7 @@ if (isset($_POST['action']) && ($_POST['action']==='get_next_test')) {
             $result['status'] = 'failure';
         }
 
-        $array = $connection->Select('tests', '*', null, '`date` <= CURRENT_TIME and `user`=' . $_SESSION['ID'] . ' and `result` IS NULL');
+        $array = $connection->Select('tests', '*', null, '`date` <= DATE_ADD(now(),interval 3 hour) and `user`=' . $_SESSION['ID'] . ' and `result` IS NULL');
         if ($array !== false) {
             foreach ($array as $item) {
                 $situation = '';
@@ -422,6 +417,21 @@ if (isset($_POST['action']) && ($_POST['action']==='get_next_test')) {
         }
     } else {
         $result['status'] = 'unauthed';
+    }
+    echo json_encode($result);
+}
+
+//subscription bought
+if (isset($_POST['action']) && isset($_POST['id']) && ($_POST['action']==='plan_bought')) {
+    $inserted = $connection->Insert('subscription', [0 => date('Y-m-d H:i:s'), 1 => $_SESSION['ID'], 2 => $_POST['id']]);
+    if ($inserted) {
+        $updated = $connection->Update('user', '`Account` - '.$_POST['sum'], '`ID`='.$_SESSION['ID'], [0=>'Account']);
+        if ($updated)
+            $result['status'] = 'success';
+        else
+            $result['status'] = 'failure';
+    } else {
+        $result['status'] = 'failure';
     }
     echo json_encode($result);
 }

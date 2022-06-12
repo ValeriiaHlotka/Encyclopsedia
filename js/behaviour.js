@@ -130,7 +130,6 @@
 //'Link to register friend: http://'.$_SERVER['HTTP_HOST'].'/main?invite='.$user[0]
         if (window.location.href.indexOf('?invite=') > -1) {
             if (document.cookie.indexOf('authorized=true') === -1) {
-                //todo link active one time and link cipher
                 let inviter = window.location.href.substr(window.location.href.indexOf('=')+1);
                 authreg.innerHTML = '    <input type="text" name="reg_login" placeholder="Your login*">\n' +
                     '                    <input type="password" name="reg_password" placeholder="Your password*">\n' +

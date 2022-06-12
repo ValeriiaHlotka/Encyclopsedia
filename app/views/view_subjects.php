@@ -4,8 +4,6 @@
         <?php
         if ($data !== false) {
             foreach ($data as $row) {
-                //todo subjects hierarchy
-
                 // if (strlen($row[2]) < 1) {
                 echo '
                     <div class="subject_item" data-id="' . $row[0] . '">

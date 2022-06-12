@@ -46,7 +46,7 @@
                                    
                                    <br><br>How to use it? If you are watching this from phone, click the QR below. Otherwise skan QR below. 
                                    Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br>
-                                   <a href="'.$ar["link"].'"><img height="250px" src="'.$ar["qr_link"].'" alt="qr"></a>
+                                   <a target="_blank" href="'.$ar["link"].'"><img height="250px" src="'.$ar["qr_link"].'" alt="qr"></a>
                                    </div>';
                         $tipped = true;
                     }

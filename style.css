@@ -332,7 +332,7 @@ form#feedback button:hover, button#confirm_payment:hover, form#authreg button:ho
 .subscription .plan:not(:last-child) {
     margin-right: 20px;
 }
-.subscription .plan:hover {
+.subscription .plan.selected {
     border: 1px solid #cc01ff;
 }
 .subscription .plan .price {
@@ -629,4 +629,13 @@ button.like.chosen:hover {
 }
 .num_a {
     display: flex;
+}
+.discount {
+    color: aliceblue;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.discount:hover {
+    color: #cc01ff;
 }

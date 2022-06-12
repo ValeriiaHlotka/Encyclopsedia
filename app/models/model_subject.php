@@ -16,7 +16,6 @@ class Model_Subject extends Model
     public function get_data_by_param($param)
     {
         $connection = new Database();
-        //todo subjects hierarchy
         $articles = $connection->Query('SELECT a.`ID`, a.`tags`, a.`heading`, a.`subject`, a.`text`, a.`date`, m.`link`, m.`type` from article as a left join media as m on a.id=m.article where a.`subject` = '. $param);
         if ($articles) {
             $subject = $connection->Select('subject', 'Name', 1, '`ID`='.$param);

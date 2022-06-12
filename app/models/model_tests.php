@@ -3,7 +3,7 @@ $tests = [];
 if (array_key_exists('ID', $_SESSION)) {
     require_once 'Database.php';
     $connection = new Database();
-    $array = $connection->Select('tests', '*', null, '`date` <= CURRENT_TIME and `user`=' . $_SESSION['ID']. ' and `result` IS NULL', [0 => 'date'], 'asc');
+    $array = $connection->Select('tests', '*', null, '`date` <= DATE_ADD(now(),interval 3 hour) and `user`=' . $_SESSION['ID']. ' and `result` IS NULL', [0 => 'date'], 'asc');
     if ($array !== false) {
         foreach ($array as $item) {
             $situation = '';
