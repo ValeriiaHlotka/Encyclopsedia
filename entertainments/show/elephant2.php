@@ -6,11 +6,13 @@
 <a-scene embedded arjs>
     <a-marker type="pattern" url="/entertainment/AR/markers/elephant.patt">
         <a-entity
-                position="0 -1 0"
-                scale="0.4 0.4 0.4"
+                position="0 0 0"
+                scale="1 1 1"
                 gltf-model="/entertainment/AR/models/elephant.glb"
                 rotation="0 45 45"
-        ></a-entity>
+        >
+            <a-animation attribute="rotation" begin="rotate" to="0 360 0"></a-animation>
+        </a-entity>
     </a-marker>
     <a-entity camera></a-entity>
 </a-scene>

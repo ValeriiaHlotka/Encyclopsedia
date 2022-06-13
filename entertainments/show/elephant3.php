@@ -6,10 +6,10 @@
 <a-scene embedded arjs>
     <a-marker type="pattern" url="/entertainment/AR/markers/elephant.patt">
         <a-entity
-                position="0 -1 0"
-                scale="0.3 0.3 0.3"
+                position="0 0 0"
+                scale="1 1 1"
                 gltf-model="/entertainment/AR/models/elephant.glb"
-                rotation="90 45 45"
+                rotation="90 90 90"
         ></a-entity>
     </a-marker>
     <a-entity camera></a-entity>
