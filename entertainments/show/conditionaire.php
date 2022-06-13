@@ -6,10 +6,10 @@
 <a-scene embedded arjs>
     <a-marker type="pattern" url="/entertainment/AR/markers/conditionaire.patt">
         <a-entity
-            position="0 -1 0"
-            scale="0.05 0.05 0.05"
+                position="0 -1 0"
+                scale="1 1 1"
             gltf-model="/entertainment/AR/models/conditionaire.glb"
-            rotation="0 90 45"
+                rotation="180 0 180"
         ></a-entity>
     </a-marker>
     <a-entity camera></a-entity>
