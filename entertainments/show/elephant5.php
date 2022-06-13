@@ -7,7 +7,7 @@
     <a-marker type="pattern" url="/entertainment/AR/markers/elephant.patt">
         <a-entity
                 position="0 0 0"
-                scale="1 1 1"
+                scale="1.5 1.5 1.5"
                 gltf-model="/entertainment/AR/models/elephant.glb"
                 rotation="180 180 180"
         ></a-entity>

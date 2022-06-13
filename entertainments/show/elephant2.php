@@ -7,11 +7,10 @@
     <a-marker type="pattern" url="/entertainment/AR/markers/elephant.patt">
         <a-entity
                 position="0 0 0"
-                scale="1 1 1"
+                scale="1.5 1.5 1.5"
                 gltf-model="/entertainment/AR/models/elephant.glb"
-                rotation="0 45 45"
+                rotation="0 180 180"
         >
-            <a-animation attribute="rotation" begin="rotate" to="0 360 0"></a-animation>
         </a-entity>
     </a-marker>
     <a-entity camera></a-entity>
