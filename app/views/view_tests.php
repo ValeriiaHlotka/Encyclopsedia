@@ -11,7 +11,7 @@ if (!empty($tests)) {
             </div>
               <div class="answers">';
             foreach ($test['answers'] as $id=>$item) {
-                echo '<div class="answer" data-id="'. $id .'">'. $item .'</div>';
+                echo '<div class="answer" data-id="'. $id .'">- '. $item .'</div>';
             }
         echo '</div>
         <div class="timer"></div></div>

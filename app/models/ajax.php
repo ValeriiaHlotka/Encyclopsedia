@@ -404,7 +404,7 @@ if (isset($_POST['action']) && ($_POST['action']==='get_next_test')) {
             </div>
               <div class="answers">';
                     foreach ($test['answers'] as $id => $item) {
-                        $str .= '<div class="answer" data-id="' . $id . '">' . $item . '</div>';
+                        $str .= '<div class="answer" data-id="' . $id . '">- ' . $item . '</div>';
                     }
                     $str .= '</div>
         <div class="timer"></div></div>

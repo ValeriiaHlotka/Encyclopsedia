@@ -45,7 +45,7 @@
                                    <div class="ar_area_text">
                                    
                                    <br><br>How to use it? If you are watching this from phone, click the QR below. Otherwise skan QR below. 
-                                   Than place <b><a href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br>
+                                   Than place <b><a target="_blank" href="/'.$ar["marker_link"].'" >this image</a></b> in the camera<br><br><br>
                                    <a target="_blank" href="'.$ar["link"].'"><img height="250px" src="'.$ar["qr_link"].'" alt="qr"></a>
                                    </div>';
                         $tipped = true;
@@ -84,7 +84,7 @@
                         </div>
                           <div class="answers">';
                     foreach ($test['answers'] as $id => $item) {
-                        echo '<div class="answer" data-id="' . $id . '">' . $item . '</div>';
+                        echo '<div class="answer" data-id="' . $id . '">- ' . $item . '</div>';
                     }
                     echo '</div><div class="error"></div>
                     </div>
